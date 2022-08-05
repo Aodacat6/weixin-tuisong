@@ -6,6 +6,12 @@ import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplateData;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplateMessage;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static ydzhao.weixin.tuisong.constant.CommonConstant.*;
 
 /**
  *@ClassName Pusher
@@ -14,25 +20,33 @@ import me.chanjar.weixin.mp.bean.template.WxMpTemplateMessage;
  *@Date 2022/8/2 16:03
  */
 public class Pusher {
-    /**
-     * 测试号的appId和secret
-     */
-    private static String appId = "xxx";
-    private static String secret = "6e2a329fd59e83fb87f013cd3a405137";
-    //模版id
-    private static String templateId = "BmHHbIFsP7SqjebQ5rgDRjBxPtRcDxgrvqyiAojgrh8";
+
 
     public static void push(String openId){
+        List<String> openIds = new ArrayList<>();
+        if (StringUtils.isBlank(openId)) {
+            //为空，推送全部
+            openIds.add(SDL_OPENID);
+            openIds.add(WLY_OPENID);
+        }else {
+            openIds.add(openId);
+        }
+        for (String openIdTmp : openIds) {
+            push2Wx(openIdTmp);
+        }
+    }
+
+    private static void push2Wx(String openId) {
         //1，配置
         WxMpInMemoryConfigStorage wxStorage = new WxMpInMemoryConfigStorage();
-        wxStorage.setAppId(appId);
-        wxStorage.setSecret(secret);
+        wxStorage.setAppId(wx_appId);
+        wxStorage.setSecret(wx_secret);
         WxMpService wxMpService = new WxMpServiceImpl();
         wxMpService.setWxMpConfigStorage(wxStorage);
         //2,推送消息
         WxMpTemplateMessage templateMessage = WxMpTemplateMessage.builder()
                 .toUser(openId)
-                .templateId(templateId)
+                .templateId(wx_zaoan_templateId)
                 //.url("https://30paotui.com/")//点击模版消息要访问的网址
                 .build();
         //3,如果是正式版发送模版消息，这里需要配置你的信息
@@ -47,6 +61,7 @@ public class Pusher {
         templateMessage.addData(new WxMpTemplateData("caihongpi",CaiHongPi.getCaiHongPi(),"#FF69B4"));
         templateMessage.addData(new WxMpTemplateData("lianai",JiNianRi.getLianAi()+"","#FF1493"));
         templateMessage.addData(new WxMpTemplateData("shengri",JiNianRi.getShengRi()+"","#FFA500"));
+        templateMessage.addData(new WxMpTemplateData("jiehun",JiNianRi.getJieHun()+"","#FFA500"));
         templateMessage.addData(new WxMpTemplateData("jinju",CaiHongPi.getJinJu()+"","#C71585"));
         //templateMessage.addData(new WxMpTemplateData("jiehun",JiNianRi.getJieHun()+""));
         templateMessage.addData(new WxMpTemplateData("linzhen",JiNianRi.getLinZhen()+"","#FF6347"));

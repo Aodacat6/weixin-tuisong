@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ydzhao.weixin.tuisong.util.Pusher;
 
+import static ydzhao.weixin.tuisong.constant.CommonConstant.SDL_OPENID;
+import static ydzhao.weixin.tuisong.constant.CommonConstant.WLY_OPENID;
+
 @RestController
 public class PushController {
-    //要推送的用户openid
-    private static String mxp = "odbd-6b1RhzrGEPCRT4rmmLKwpas";
-    private static String zyd = "odbd-6U6ygdSTCwldsJ6qs0kxXeA";
+
 
 
     /**
@@ -25,15 +26,15 @@ public class PushController {
      */
     @GetMapping("/push")
     public void push() {
-        Pusher.push(mxp);
+        Pusher.push(SDL_OPENID);
     }
 
     /**
      * 微信测试账号推送
      * */
-    @GetMapping("/push/zyd")
+    @GetMapping("/push/wly")
     public void pushZyd() {
-        Pusher.push(zyd);
+        Pusher.push(WLY_OPENID);
     }
 
 

@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static ydzhao.weixin.tuisong.constant.CommonConstant.tianxing_key;
+import static ydzhao.weixin.tuisong.constant.CommonConstant.tianxing_url;
+
 /**
  * @ClassName CaiHongPi
  * @Description TODO
@@ -18,23 +21,22 @@ import java.util.Random;
  * @Date 2022/8/2 17:26
  */
 public class CaiHongPi {
-    private static String key = "xxx";
-    private static String url = "http://api.tianapi.com/caihongpi/index?key=";
+
     private static List<String> jinJuList = new ArrayList<>();
-    private static String name = "老婆";
+    private static String name = "丽媛";
 
     public static String getCaiHongPi() {
         //默认彩虹屁
         String str = "阳光落在屋里，爱你藏在心里";
         try {
-            JSONObject jsonObject = JSONObject.parseObject(HttpUtil.getUrl(url+key).replace("XXX", name));
+            JSONObject jsonObject = JSONObject.parseObject(HttpUtil.getUrl(tianxing_url + tianxing_key));
             if (jsonObject.getIntValue("code") == 200) {
                 str = jsonObject.getJSONArray("newslist").getJSONObject(0).getString("content");
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return str;
+        return name + "，" + str;
     }
 
     /**

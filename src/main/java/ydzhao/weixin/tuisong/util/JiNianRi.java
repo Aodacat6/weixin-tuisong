@@ -13,19 +13,19 @@ public class JiNianRi {
     /**
      * 恋爱
      */
-    static String lianAi = "2018-05-21";
+    static String lianAi = "2013-08-15";
     /**
      * 领证
      */
-    static String linZheng = "2022-03-19";
+    static String linZheng = "2022-08-15";
     /**
      * 结婚
      */
-    static String jieHun = "2022-07-08";
+    static String jieHun = "2022-10-04";
     /**
      * 生日
      */
-    static String shengRi = "2023-03-02";
+    static String shengRi = "1994-11-10";
 
     private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -71,7 +71,7 @@ public class JiNianRi {
     }
 
     public static int getLianAi() {
-        return before(lianAi);
+        return after(lianAi);
     }
 
     public static int getShengRi(){
