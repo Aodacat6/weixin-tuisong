@@ -8,6 +8,7 @@ package ydzhao.weixin.tuisong.controller;
  */
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ydzhao.weixin.tuisong.util.Pusher;
@@ -16,6 +17,7 @@ import static ydzhao.weixin.tuisong.constant.CommonConstant.SDL_OPENID;
 import static ydzhao.weixin.tuisong.constant.CommonConstant.WLY_OPENID;
 
 @RestController
+@RequestMapping("/555sdsdfsEuu/99985WWng")
 public class PushController {
 
 
