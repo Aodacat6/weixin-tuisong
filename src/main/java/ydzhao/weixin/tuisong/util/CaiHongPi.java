@@ -36,7 +36,11 @@ public class CaiHongPi {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return name + "，" + str;
+        if (str.contains("XXX")) {
+            return str.replace("XXX", name);
+        } else {
+            return name + "，" + str;
+        }
     }
 
     /**
@@ -66,6 +70,12 @@ public class CaiHongPi {
     }
 
     public static void main(String[] args) {
-        System.out.println(getJinJu());
+        //System.out.println(getJinJu());
+        String str = "嗨嗨嗨";
+        if (str.contains("XXX")) {
+            System.out.println(str.replace("XXX", name));
+        } else {
+            System.out.println(name + "，" + str);
+        }
     }
 }
