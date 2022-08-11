@@ -9,6 +9,7 @@ import me.chanjar.weixin.mp.bean.template.WxMpTemplateMessage;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static ydzhao.weixin.tuisong.constant.CommonConstant.*;
@@ -60,19 +61,18 @@ public class Pusher {
         templateMessage.addData(new WxMpTemplateData("high",todayWeather.getString("high")+ "","#FF6347" ));
         templateMessage.addData(new WxMpTemplateData("caihongpi",CaiHongPi.getCaiHongPi(),"#FF69B4"));
         templateMessage.addData(new WxMpTemplateData("lianai",JiNianRi.getLianAi()+"","#FF1493"));
-        templateMessage.addData(new WxMpTemplateData("shengri",JiNianRi.getShengRi()+"","#FFA500"));
         templateMessage.addData(new WxMpTemplateData("jiehun",JiNianRi.getJieHun()+"","#FFA500"));
         templateMessage.addData(new WxMpTemplateData("jinju",CaiHongPi.getJinJu()+"","#C71585"));
         //templateMessage.addData(new WxMpTemplateData("jiehun",JiNianRi.getJieHun()+""));
         templateMessage.addData(new WxMpTemplateData("linzhen",JiNianRi.getLinZhen()+"","#FF6347"));
         String beizhu = "";
-        if(JiNianRi.getJieHun() % 365 == 0){
-            beizhu = "今天是结婚纪念日！";
+        if (StringUtils.equals(DateUtil.date2Str(new Date(), DateUtil.MMDD), JiNianRi.shengRi_ly)) {
+            beizhu = "祝丽媛生日快乐！";
         }
-        if(JiNianRi.getLianAi() % 365 == 0){
-            beizhu = "今天是恋爱纪念日！";
+        if (StringUtils.equals(DateUtil.date2Str(new Date(), DateUtil.MMDD), JiNianRi.shengRi_dl)) {
+            beizhu = "祝大林生日快乐！";
         }
-        if(JiNianRi.getLinZhen() % 365 == 0){
+        if(StringUtils.equals(DateUtil.date2Str(new Date(), DateUtil.MMDD), JiNianRi.linZheng)){
             beizhu = "今天是结婚纪念日！";
         }
         templateMessage.addData(new WxMpTemplateData("beizhu",beizhu,"#FF0000"));

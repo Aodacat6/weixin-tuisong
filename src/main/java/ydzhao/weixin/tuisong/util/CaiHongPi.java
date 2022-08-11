@@ -23,7 +23,7 @@ import static ydzhao.weixin.tuisong.constant.CommonConstant.tianxing_url;
 public class CaiHongPi {
 
     private static List<String> jinJuList = new ArrayList<>();
-    private static String name = "丽媛";
+    private static String name = "媛媛";
 
     public static String getCaiHongPi() {
         //默认彩虹屁

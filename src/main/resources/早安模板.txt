@@ -1,0 +1,11 @@
+{{riqi.DATA}}
+{{beizhu.DATA}}
+城阳天气：{{tianqi.DATA}}
+最低温度：{{low.DATA}} 度
+最高温度：{{high.DATA}} 度
+今天是我们恋爱的第 {{lianai.DATA}} 天
+距离成为合法夫妻还有 {{linzhen.DATA}} 天
+距离婚礼还有 {{jiehun.DATA}} 天
+
+{{caihongpi.DATA}}
+{{jinju.DATA}}

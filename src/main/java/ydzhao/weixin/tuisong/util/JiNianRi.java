@@ -3,6 +3,8 @@ package ydzhao.weixin.tuisong.util;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import static ydzhao.weixin.tuisong.util.DateUtil.YYYYMMDD;
+
 /**
  * @ClassName JiNianRi
  * @Description TODO
@@ -17,17 +19,18 @@ public class JiNianRi {
     /**
      * 领证
      */
-    static String linZheng = "2022-08-15";
+    public static String linZheng = "2022-08-15";
     /**
      * 结婚
      */
     static String jieHun = "2022-10-04";
+
     /**
      * 生日
      */
-    static String shengRi = "1994-11-10";
+    public static String shengRi_ly = "11-10";
 
-    private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    public static String shengRi_dl = "12-27";
 
     /**
      * 距离date还有多少天
@@ -36,12 +39,8 @@ public class JiNianRi {
      */
     public static int before(String date) {
         int day = 0;
-        try {
-            long time = simpleDateFormat.parse(date).getTime() - System.currentTimeMillis();
-            day = (int) (time / 86400000L);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        long time = DateUtil.str2Date(date, YYYYMMDD).getTime() - System.currentTimeMillis();
+        day = (int) (time / 86400000L);
         return day;
     }
 
@@ -53,12 +52,8 @@ public class JiNianRi {
      */
     public static int after(String date) {
         int day = 0;
-        try {
-            long time = System.currentTimeMillis() - simpleDateFormat.parse(date).getTime();
-            day = (int) (time / 86400000L);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        long time = System.currentTimeMillis() - DateUtil.str2Date(date, YYYYMMDD).getTime();
+        day = (int) (time / 86400000L);
         return day;
     }
 
@@ -74,13 +69,9 @@ public class JiNianRi {
         return after(lianAi);
     }
 
-    public static int getShengRi(){
-        return after(shengRi);
-    }
 
     public static void main(String[] args) {
         System.out.println(getJieHun());
     }
-
 
 }
